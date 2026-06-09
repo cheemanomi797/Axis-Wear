@@ -104,7 +104,7 @@ const Footer = () => {
           <div>
             <h4 style={{ marginBottom: '1rem' }}>Contact Us</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
-              <a href="tel:+923076268687" className="text-secondary hover:text-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <a href="https://wa.me/923101748362" className="text-secondary hover:text-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Phone size={16} /> +92 307 6268687
               </a>
             </div>
