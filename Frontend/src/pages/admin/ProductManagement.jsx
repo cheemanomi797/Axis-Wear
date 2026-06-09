@@ -25,7 +25,7 @@ const ProductManagement = () => {
   };
   const [formData, setFormData] = useState(initialFormState);
 
-  const availableSizes = ['S', 'M', 'L', 'XL', 'XXL'];
+  const availableSizes = ['S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL'];
 
   useEffect(() => {
     fetchProducts();
