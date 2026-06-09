@@ -91,7 +91,6 @@ const Footer = () => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <a href="/" className="text-secondary hover:text-primary">Home</a>
               <a href="/shop" className="text-secondary hover:text-primary">Shop</a>
-              <a href="/admin/login" className="text-secondary hover:text-primary">Admin Portal</a>
             </div>
           </div>
           <div>
