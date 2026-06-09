@@ -27,6 +27,10 @@ const Footer = () => {
             <h4 style={{ marginBottom: '1rem' }}>Customer Support</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <span className="text-secondary">Contact Us</span>
+              <a href="https://wa.me/923101748362" target="_blank" rel="noreferrer" className="text-secondary hover:text-primary">WhatsApp: +92 310 1748362</a>
+              <a href="https://www.instagram.com/yourprofile" target="_blank" rel="noreferrer" className="text-secondary hover:text-primary">Instagram</a>
+              <a href="https://www.tiktok.com/@yourprofile" target="_blank" rel="noreferrer" className="text-secondary hover:text-primary">TikTok</a>
+
               <span className="text-secondary">Shipping & Returns</span>
               <span className="text-secondary">FAQ</span>
             </div>
