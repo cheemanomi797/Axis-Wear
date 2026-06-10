@@ -18,7 +18,7 @@ const Shop = () => {
 
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
-  const [priceMax, setPriceMax] = useState(200000000);
+  const [priceMax, setPriceMax] = useState(15000);
   const [sortType, setSortType] = useState('default');
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
@@ -79,13 +79,13 @@ const Shop = () => {
     }
   };
 
-  const handleClearFilters = () => {
-    setSelectedCategory('');
-    setSelectedSize('');
-    setPriceMax(200);
-    setSortType('default');
-  };
-
+const handleClearFilters = () => {
+  setSelectedCategory('');
+  setSelectedSize('');
+  setPriceMax(15000);
+  setSortType('default');
+};
+  
   const renderFiltersContent = () => (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
@@ -158,15 +158,14 @@ const Shop = () => {
           <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{formatCurrency(0)}</span>
           <span style={{ fontSize: '1rem', fontWeight: 'bold', color: 'var(--accent-primary)' }}>{formatCurrency(priceMax)}</span>
         </div>
-        <input
-          type="range"
-          min="10"
-          max="200"
-          value={priceMax}
-          onChange={(e) => setPriceMax(Number(e.target.value))}
-          className="price-slider"
-        />
-      </div>
+<input
+  type="range"
+  min="10"
+  max="15000"
+  value={priceMax}
+  onChange={(e) => setPriceMax(Number(e.target.value))}
+  className="price-slider"
+/>      </div>
     </>
   );
 
