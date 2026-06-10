@@ -138,7 +138,7 @@ const handleClearFilters = () => {
       <div style={{ marginBottom: '2.5rem' }}>
         <h4 style={{ fontSize: '0.95rem', marginBottom: '1.25rem', textTransform: 'uppercase', letterSpacing: '1px' }} className="text-secondary">Filter by Size</h4>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
-          {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
+         {['S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL'].map(size => (
             <button
               key={size}
               onClick={() => { setSelectedSize(selectedSize === size ? '' : size); setIsMobileFiltersOpen(false); }}
