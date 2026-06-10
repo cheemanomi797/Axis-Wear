@@ -19,10 +19,15 @@ export const CartProvider = ({ children }) => {
         (item) => item.product === product._id && item.size === size && item.color === color
       );
 
+      const discount = Number(product.discount) || 0;
+      const unitPrice = discount > 0
+        ? Number(product.price || 0) * (1 - discount / 100)
+        : Number(product.price || 0);
+
       if (existingItem) {
         return prev.map((item) =>
           item.product === product._id && item.size === size && item.color === color
-            ? { ...item, qty: item.qty + qty }
+            ? { ...item, qty: item.qty + qty, price: unitPrice }
             : item
         );
       } else {
@@ -31,7 +36,7 @@ export const CartProvider = ({ children }) => {
           {
             product: product._id,
             name: product.name,
-            price: product.price,
+            price: unitPrice,
             image: product.images[0],
             qty,
             size,
