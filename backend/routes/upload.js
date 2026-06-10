@@ -2,7 +2,6 @@ import express from 'express';
 import upload from '../utils/upload.js';
 import { protect, admin } from '../utils/authMiddleware.js';
 import fs from 'fs';
-import cloud from '../utils/cloudinaryConfig.js';
 import axios from 'axios';
 
 const router = express.Router();
@@ -15,18 +14,24 @@ router.post('/', protect, admin, upload.array('images', 5), async (req, res) => 
 
         // If Cloudinary is configured via env vars, upload files there and return secure URLs
         if (process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && process.env.CLOUDINARY_API_SECRET) {
-            const uploadPromises = req.files.map((file) => cloud.uploader.upload(file.path, { folder: 'axis-wear' }));
-            const results = await Promise.all(uploadPromises);
+            try {
+                const { default: cloud } = await import('../utils/cloudinaryConfig.js');
+                const uploadPromises = req.files.map((file) => cloud.uploader.upload(file.path, { folder: 'axis-wear' }));
+                const results = await Promise.all(uploadPromises);
 
-            // Clean up local temp files
-            req.files.forEach((f) => {
-                try { fs.unlinkSync(f.path); } catch (err) { /* ignore */ }
-            });
+                // Clean up local temp files
+                req.files.forEach((f) => {
+                    try { fs.unlinkSync(f.path); } catch (err) { /* ignore */ }
+                });
 
-            // Prefer secure_url but fall back to any URL returned by the provider
-            const images = results.map(r => r.secure_url || r.url || r.secure_url);
-            console.log('Cloudinary upload results:', images);
-            return res.status(201).json({ message: 'Images uploaded successfully.', images });
+                // Prefer secure_url but fall back to any URL returned by the provider
+                const images = results.map(r => r.secure_url || r.url || r.secure_url);
+                console.log('Cloudinary upload results:', images);
+                return res.status(201).json({ message: 'Images uploaded successfully.', images });
+            } catch (err) {
+                console.error('Failed to load Cloudinary config or upload:', err?.message || err);
+                // fall through to IMGBB or local fallback
+            }
         }
 
         // If IMGBB API key is provided, upload images to imgbb and return their HTTPS URLs
