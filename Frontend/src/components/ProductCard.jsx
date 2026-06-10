@@ -7,7 +7,7 @@ import { getImageUrl } from '../utils/imageUrl';
 const ProductCard = ({ product }) => {
   const rawImages = Array.isArray(product.images) && product.images.length > 0
     ? product.images
-    : ['https://via.placeholder.com/800x800/1E293B/14B8A6?text=Axis+Wear'];
+    : ['/images/placeholder.svg'];
   const images = rawImages.map((img) => getImageUrl(img));
   const isDiscounted = Number(product.discount) > 0;
   const price = isDiscounted ? Number(product.price || 0) * (1 - Number(product.discount || 0) / 100) : Number(product.price || 0);
@@ -33,7 +33,7 @@ const ProductCard = ({ product }) => {
           alt={product.name || 'Axis Wear product'}
           loading="lazy"
           style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
-          onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/800x800/1E293B/14B8A6?text=Axis+Wear'; }}
+          onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder.svg'; }}
         />
         {images.length > 1 && (
           <img
@@ -41,7 +41,7 @@ const ProductCard = ({ product }) => {
             alt={`${product.name} alternate`}
             loading="lazy"
             style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0, transition: 'all 0.5s ease' }}
-            onError={(e) => { e.target.style.display = 'none'; }}
+            onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder.svg'; }}
           />
         )}
         {isDiscounted && (
