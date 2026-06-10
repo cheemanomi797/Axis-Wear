@@ -18,7 +18,7 @@ const Shop = () => {
 
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
-  const [priceMax, setPriceMax] = useState(200);
+  const [priceMax, setPriceMax] = useState(200000000);
   const [sortType, setSortType] = useState('default');
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
